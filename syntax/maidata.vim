@@ -141,11 +141,16 @@ syn cluster MaidataInsn
 syn region MaidataInsnDuration contained
     \ start=/\[/
     \ end=/\]/
-    \ contains=MaidataInsnDurationParam
+    \ contains=MaidataInsnDurationParam,@MaidataInsnDurationParamSpecial
     \ transparent
 
 " TODO: refine this
 syn match MaidataInsnDurationParam contained /[0-9]\+:[0-9]\+/ transparent
+syn match MaidataInsnDurationParamSpecialA contained /#[0-9.]\+/
+syn match MaidataInsnDurationParamSpecialB contained /[0-9.]\+#[0-9]\+:[0-9]\+/
+syn match MaidataInsnDurationParamSpecialC contained /[0-9.]\+##[0-9.]\+/
+syn cluster MaidataInsnDurationParamSpecial
+    \ contains=MaidataInsnDurationParamSpecialA,MaidataInsnDurationParamSpecialB,MaidataInsnDurationParamSpecialC
 
 syn match MaidataInsnHold contained /[1-8]h\[[#0-9:.]\+\][/,]/
     \ contains=MaidataInsnDuration,@MaidataInsnSep
@@ -191,7 +196,7 @@ hi def link MaidataLv                      Number
 "hi def link MaidataInsnKey                 Keyword
 "hi def link MaidataInsnDXSensor            Identifier
 hi def link MaidataInsnBPM                 Macro
-hi def link MaidataInsnBeatDivisorAbs      Macro
+hi def link MaidataInsnBeatDivisorAbs      Special
 hi def link MaidataInsnBeatDivisorFrac     Macro
 hi def link MaidataInsnSepComma            Comment
 hi def link MaidataInsnSepEach             Special
@@ -200,7 +205,10 @@ hi def link MaidataInsnTapSingle           String
 hi def link MaidataInsnTapBreakSingle      Todo
 hi def link MaidataInsnTouchSingle         Identifier
 hi def link MaidataInsnTapMulti            String
-"hi def link MaidataInsnDuration            Type
+hi def link MaidataInsnDurationParamSpecialA MaidataInsnDurationParamSpecial
+hi def link MaidataInsnDurationParamSpecialB MaidataInsnDurationParamSpecial
+hi def link MaidataInsnDurationParamSpecialC MaidataInsnDurationParamSpecial
+hi def link MaidataInsnDurationParamSpecial  Special
 hi def link MaidataInsnHold                Repeat
 hi def link MaidataInsnSlideShapeOther     Type
 hi def link MaidataInsnSlideShapeV         Type
