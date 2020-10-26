@@ -157,14 +157,17 @@ syn match MaidataInsnSlideShapeV contained /V/
 syn cluster MaidataInsnSlideShape
     \ contains=MaidataInsnSlideShapeOther,MaidataInsnSlideShapeV
 
-syn match MaidataInsnSlideStart contained /[1-8]b\?\ze[<>^vpqszwV-]/
+syn match MaidataInsnSlideStartTap contained /[1-8]\ze[<>^vpqszwV-]/
+syn match MaidataInsnSlideStartBreak contained /[1-8]b\ze[<>^vpqszwV-]/
+syn cluster MaidataInsnSlideStart
+    \ contains=MaidataInsnSlideStartTap,MaidataInsnSlideStartBreak
 
 syn match MaidataInsnSlideTrackOther contained /[<>^vpqszw-][pq]\?[1-8]\[[#0-9:.]\+\][*/,]/
     \ contains=@MaidataInsnSlideShape,MaidataInsnDuration,@MaidataInsnSep,MaidataInsnSepSlideTrack
 syn match MaidataInsnSlideTrackV contained /V[1-8][1-8]\[[#0-9:.]\+\][*/,]/
     \ contains=@MaidataInsnSlideShape,MaidataInsnDuration,@MaidataInsnSep,MaidataInsnSepSlideTrack
 syn cluster MaidataInsn
-    \ add=MaidataInsnSlideStart,MaidataInsnSlideTrackOther,MaidataInsnSlideTrackV
+    \ add=@MaidataInsnSlideStart,MaidataInsnSlideTrackOther,MaidataInsnSlideTrackV
 
 " sync at & signs at beginning of line
 syn sync match MaidataSync grouphere NONE /^&/
@@ -191,17 +194,18 @@ hi def link MaidataInsnBPM                 Macro
 hi def link MaidataInsnBeatDivisorAbs      Macro
 hi def link MaidataInsnBeatDivisorFrac     Macro
 hi def link MaidataInsnSepComma            Comment
-hi def link MaidataInsnSepEach             Operator
-hi def link MaidataInsnSepSlideTrack       Operator
+hi def link MaidataInsnSepEach             Special
+hi def link MaidataInsnSepSlideTrack       Special
 hi def link MaidataInsnTapSingle           String
-hi def link MaidataInsnTapBreakSingle      String
+hi def link MaidataInsnTapBreakSingle      Todo
 hi def link MaidataInsnTouchSingle         Identifier
 hi def link MaidataInsnTapMulti            String
 "hi def link MaidataInsnDuration            Type
 hi def link MaidataInsnHold                Repeat
 hi def link MaidataInsnSlideShapeOther     Type
 hi def link MaidataInsnSlideShapeV         Type
-hi def link MaidataInsnSlideStart          Underlined
+hi def link MaidataInsnSlideStartTap       Underlined
+hi def link MaidataInsnSlideStartBreak     Todo
 hi def link MaidataInsnSlideTrackOther     Underlined
 hi def link MaidataInsnSlideTrackV         Underlined
 
