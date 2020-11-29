@@ -162,6 +162,11 @@ syn match MaidataInsnHold contained /[1-8]h\[[#0-9:.]\+\][/,]/
 syn cluster MaidataInsn
     \ add=MaidataInsnHold
 
+syn match MaidataInsnHoldEx contained /[1-8]hx\[[#0-9:.]\+\][/,]/
+    \ contains=MaidataInsnDuration,@MaidataInsnSep
+syn cluster MaidataInsn
+    \ add=MaidataInsnHoldEx
+
 syn match MaidataInsnSlideShapeOther contained /pp\|qq\|[<>^vpqszw-]/
 syn match MaidataInsnSlideShapeV contained /V/
 syn cluster MaidataInsnSlideShape
@@ -216,6 +221,7 @@ hi def link MaidataInsnDurationParamSpecialB MaidataInsnDurationParamSpecial
 hi def link MaidataInsnDurationParamSpecialC MaidataInsnDurationParamSpecial
 hi def link MaidataInsnDurationParamSpecial  Special
 hi def link MaidataInsnHold                Repeat
+hi def link MaidataInsnHoldEx              Repeat
 hi def link MaidataInsnSlideShapeOther     Type
 hi def link MaidataInsnSlideShapeV         Type
 hi def link MaidataInsnSlideStartTap       Underlined
