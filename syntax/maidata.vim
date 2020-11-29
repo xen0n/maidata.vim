@@ -128,6 +128,11 @@ syn match MaidataInsnTapBreakSingle contained /[1-8]b[/,]/
 syn cluster MaidataInsn
     \ add=MaidataInsnTapBreakSingle
 
+syn match MaidataInsnTapExSingle contained /[1-8]x[/,]/
+    \ contains=MaidataInsnKey,@MaidataInsnSep
+syn cluster MaidataInsn
+    \ add=MaidataInsnTapExSingle
+
 syn match MaidataInsnTouchSingle contained /[A-E][1-8][/,]/
     \ contains=MaidataInsnDXSensor,@MaidataInsnSep
 syn cluster MaidataInsn
@@ -203,6 +208,7 @@ hi def link MaidataInsnSepEach             Special
 hi def link MaidataInsnSepSlideTrack       Special
 hi def link MaidataInsnTapSingle           String
 hi def link MaidataInsnTapBreakSingle      Todo
+hi def link MaidataInsnTapExSingle         Todo
 hi def link MaidataInsnTouchSingle         Identifier
 hi def link MaidataInsnTapMulti            String
 hi def link MaidataInsnDurationParamSpecialA MaidataInsnDurationParamSpecial
