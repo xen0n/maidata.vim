@@ -174,8 +174,9 @@ syn cluster MaidataInsnSlideShape
 
 syn match MaidataInsnSlideStartTap contained /[1-8]\ze[<>^vpqszwV-]/
 syn match MaidataInsnSlideStartBreak contained /[1-8]b\ze[<>^vpqszwV-]/
+syn match MaidataInsnSlideStartEx contained /[1-8]x\ze[<>^vpqszwV-]/
 syn cluster MaidataInsnSlideStart
-    \ contains=MaidataInsnSlideStartTap,MaidataInsnSlideStartBreak
+    \ contains=MaidataInsnSlideStartTap,MaidataInsnSlideStartBreak,MaidataInsnSlideStartEx
 
 syn match MaidataInsnSlideTrackOther contained /[<>^vpqszw-][pq]\?[1-8]\[[#0-9:.]\+\][*/,]/
     \ contains=@MaidataInsnSlideShape,MaidataInsnDuration,@MaidataInsnSep,MaidataInsnSepSlideTrack
@@ -226,6 +227,7 @@ hi def link MaidataInsnSlideShapeOther     Type
 hi def link MaidataInsnSlideShapeV         Type
 hi def link MaidataInsnSlideStartTap       Underlined
 hi def link MaidataInsnSlideStartBreak     Todo
+hi def link MaidataInsnSlideStartEx        Todo
 hi def link MaidataInsnSlideTrackOther     Underlined
 hi def link MaidataInsnSlideTrackV         Underlined
 
