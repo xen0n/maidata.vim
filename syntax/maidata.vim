@@ -173,6 +173,18 @@ syn match MaidataInsnHoldEx contained /[1-8]hx\[[#0-9:.]\+\][/`,]/
 syn cluster MaidataInsn
     \ add=MaidataInsnHoldEx
 
+" currently only C sensor is possible for TOUCH HOLDs but allow all
+" combinations
+syn match MaidataInsnTouchHold contained /\([ABDE][1-8]\|C[12]\?\)h\[[#0-9:.]\+\][/`,]/
+    \ contains=MaidataInsnDuration,@MaidataInsnSep
+syn cluster MaidataInsn
+    \ add=MaidataInsnTouchHold
+
+syn match MaidataInsnTouchHoldFireworks contained /\([ABDE][1-8]\|C[12]\?\)hf\[[#0-9:.]\+\][/`,]/
+    \ contains=MaidataInsnDuration,@MaidataInsnSep
+syn cluster MaidataInsn
+    \ add=MaidataInsnTouchHoldFireworks
+
 syn match MaidataInsnSlideShapeOther contained /pp\|qq\|[<>^vpqszw-]/
 syn match MaidataInsnSlideShapeV contained /V/
 syn cluster MaidataInsnSlideShape
@@ -231,6 +243,8 @@ hi def link MaidataInsnDurationParamSpecialC MaidataInsnDurationParamSpecial
 hi def link MaidataInsnDurationParamSpecial  Special
 hi def link MaidataInsnHold                Repeat
 hi def link MaidataInsnHoldEx              Repeat
+hi def link MaidataInsnTouchHold           Todo
+hi def link MaidataInsnTouchHoldFireworks  Todo
 hi def link MaidataInsnSlideShapeOther     Type
 hi def link MaidataInsnSlideShapeV         Type
 hi def link MaidataInsnSlideStartTap       Underlined
