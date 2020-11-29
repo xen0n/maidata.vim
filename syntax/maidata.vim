@@ -134,12 +134,12 @@ syn match MaidataInsnTapExSingle contained /[1-8]x[/`,]/
 syn cluster MaidataInsn
     \ add=MaidataInsnTapExSingle
 
-syn match MaidataInsnTouchSingle contained /\([A-E][1-8]\|C\)[/`,]/
+syn match MaidataInsnTouchSingle contained /\([ABDE][1-8]\|C[12]\?\)[/`,]/
     \ contains=MaidataInsnDXSensor,@MaidataInsnSep
 syn cluster MaidataInsn
     \ add=MaidataInsnTouchSingle
 
-syn match MaidataInsnTouchFireworksSingle contained /\([A-E][1-8]\|C\)f[/`,]/
+syn match MaidataInsnTouchFireworksSingle contained /\([ABDE][1-8]\|C[12]\?\)f[/`,]/
     \ contains=MaidataInsnDXSensor,@MaidataInsnSep
 syn cluster MaidataInsn
     \ add=MaidataInsnTouchFireworksSingle
