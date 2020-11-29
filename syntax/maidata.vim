@@ -109,8 +109,9 @@ syn cluster MaidataInsn
 
 syn match MaidataInsnSepComma contained /,/
 syn match MaidataInsnSepEach contained "/"
+syn match MaidataInsnSepApproxEach contained /`/
 syn cluster MaidataInsnSep
-    \ contains=MaidataInsnSepComma,MaidataInsnSepEach
+    \ contains=MaidataInsnSepComma,MaidataInsnSepEach,MaidataInsnApproxEach
 syn cluster MaidataInsn
     \ add=@MaidataInsnSep
 
@@ -118,22 +119,22 @@ syn match MaidataInsnSepSlideTrack contained /\*/
 syn cluster MaidataInsn
     \ add=MaidataInsnSepSlideTrack
 
-syn match MaidataInsnTapSingle contained /[1-8][/,]/
+syn match MaidataInsnTapSingle contained /[1-8][/`,]/
     \ contains=MaidataInsnKey,@MaidataInsnSep
 syn cluster MaidataInsn
     \ add=MaidataInsnTapSingle
 
-syn match MaidataInsnTapBreakSingle contained /[1-8]b[/,]/
+syn match MaidataInsnTapBreakSingle contained /[1-8]b[/`,]/
     \ contains=MaidataInsnKey,@MaidataInsnSep
 syn cluster MaidataInsn
     \ add=MaidataInsnTapBreakSingle
 
-syn match MaidataInsnTapExSingle contained /[1-8]x[/,]/
+syn match MaidataInsnTapExSingle contained /[1-8]x[/`,]/
     \ contains=MaidataInsnKey,@MaidataInsnSep
 syn cluster MaidataInsn
     \ add=MaidataInsnTapExSingle
 
-syn match MaidataInsnTouchSingle contained /[A-E][1-8][/,]/
+syn match MaidataInsnTouchSingle contained /\([A-E][1-8]\|C\)[/`,]/
     \ contains=MaidataInsnDXSensor,@MaidataInsnSep
 syn cluster MaidataInsn
     \ add=MaidataInsnTouchSingle
@@ -157,12 +158,12 @@ syn match MaidataInsnDurationParamSpecialC contained /[0-9.]\+##[0-9.]\+/
 syn cluster MaidataInsnDurationParamSpecial
     \ contains=MaidataInsnDurationParamSpecialA,MaidataInsnDurationParamSpecialB,MaidataInsnDurationParamSpecialC
 
-syn match MaidataInsnHold contained /[1-8]h\[[#0-9:.]\+\][/,]/
+syn match MaidataInsnHold contained /[1-8]h\[[#0-9:.]\+\][/`,]/
     \ contains=MaidataInsnDuration,@MaidataInsnSep
 syn cluster MaidataInsn
     \ add=MaidataInsnHold
 
-syn match MaidataInsnHoldEx contained /[1-8]hx\[[#0-9:.]\+\][/,]/
+syn match MaidataInsnHoldEx contained /[1-8]hx\[[#0-9:.]\+\][/`,]/
     \ contains=MaidataInsnDuration,@MaidataInsnSep
 syn cluster MaidataInsn
     \ add=MaidataInsnHoldEx
@@ -178,9 +179,9 @@ syn match MaidataInsnSlideStartEx contained /[1-8]x\ze[<>^vpqszwV-]/
 syn cluster MaidataInsnSlideStart
     \ contains=MaidataInsnSlideStartTap,MaidataInsnSlideStartBreak,MaidataInsnSlideStartEx
 
-syn match MaidataInsnSlideTrackOther contained /[<>^vpqszw-][pq]\?[1-8]\[[#0-9:.]\+\][*/,]/
+syn match MaidataInsnSlideTrackOther contained /[<>^vpqszw-][pq]\?[1-8]\[[#0-9:.]\+\][*/`,]/
     \ contains=@MaidataInsnSlideShape,MaidataInsnDuration,@MaidataInsnSep,MaidataInsnSepSlideTrack
-syn match MaidataInsnSlideTrackV contained /V[1-8][1-8]\[[#0-9:.]\+\][*/,]/
+syn match MaidataInsnSlideTrackV contained /V[1-8][1-8]\[[#0-9:.]\+\][*/`,]/
     \ contains=@MaidataInsnSlideShape,MaidataInsnDuration,@MaidataInsnSep,MaidataInsnSepSlideTrack
 syn cluster MaidataInsn
     \ add=@MaidataInsnSlideStart,MaidataInsnSlideTrackOther,MaidataInsnSlideTrackV
@@ -212,6 +213,7 @@ hi def link MaidataInsnBeatDivisorFrac     Macro
 hi def link MaidataInsnSepComma            Comment
 hi def link MaidataInsnSepEach             Special
 hi def link MaidataInsnSepSlideTrack       Special
+hi def link MaidataInsnSepApproxEach       Special
 hi def link MaidataInsnTapSingle           String
 hi def link MaidataInsnTapBreakSingle      Todo
 hi def link MaidataInsnTapExSingle         Todo
