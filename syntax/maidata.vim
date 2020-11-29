@@ -139,6 +139,11 @@ syn match MaidataInsnTouchSingle contained /\([A-E][1-8]\|C\)[/`,]/
 syn cluster MaidataInsn
     \ add=MaidataInsnTouchSingle
 
+syn match MaidataInsnTouchFireworksSingle contained /\([A-E][1-8]\|C\)f[/`,]/
+    \ contains=MaidataInsnDXSensor,@MaidataInsnSep
+syn cluster MaidataInsn
+    \ add=MaidataInsnTouchFireworksSingle
+
 syn match MaidataInsnTapMulti contained /[1-8]\+,/
     \ contains=MaidataInsnKey,MaidataInsnSepComma
 syn cluster MaidataInsn
@@ -218,6 +223,7 @@ hi def link MaidataInsnTapSingle           String
 hi def link MaidataInsnTapBreakSingle      Todo
 hi def link MaidataInsnTapExSingle         Todo
 hi def link MaidataInsnTouchSingle         Identifier
+hi def link MaidataInsnTouchFireworksSingle Todo
 hi def link MaidataInsnTapMulti            String
 hi def link MaidataInsnDurationParamSpecialA MaidataInsnDurationParamSpecial
 hi def link MaidataInsnDurationParamSpecialB MaidataInsnDurationParamSpecial
